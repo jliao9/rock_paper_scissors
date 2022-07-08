@@ -1,0 +1,28 @@
+.body {
+   max-height: 100vh;
+}
+
+.header {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+}
+
+.prompt {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+}
+
+.fighters {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.rock:hover, .paper:hover, .scissors:hover {
+    font-family: monospace;
+    font-size: 120%;
+}
