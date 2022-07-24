@@ -2,20 +2,23 @@ let playerScore = 0;
 let computerScore = 0;
 let roundCount = 0;
 
+let computerSelection = computerPlay();
+let playerSelection;
 
 const rockPlay = document.querySelector("#rock");
 const paperPlay = document.querySelector("#paper");
 const scissorsPlay = document.querySelector("#scissors");
 const score = document.querySelector("#result");
+const results = document.querySelector(".scoreboard");
+const current = document.querySelector(".current");
+const reset = document.querySelector(".reset");
 
-// computerPlay returns random integer from numberConvert playerPlay returns typed value from userPrompt
 function computerPlay(){
     let choices = ["rock", "paper", "scissors"]
     return choices[Math.floor(Math.random() * choices.length)]
+    
 }
 
-let computerSelection = computerPlay();
-let playerSelection;
 
 rockPlay.addEventListener("click", () => {
         playerSelection = "rock";
@@ -34,41 +37,78 @@ scissorsPlay.addEventListener("click", () => {
 });
 
 
-//function that plays a single round of rps given parameter from both computer and player
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
+        let computerSelection = computerPlay();
+
     if (playerSelection === computerSelection) {
-        score.textContent = "It's a tie!";
+        score.innerHTML = "<b>It's a tie!</b>";
+        roundCount +=1;
+        scores();
     }   else if (playerSelection === "rock") {
             if (computerSelection === "paper") {
-                score.textContent = "You lose! Paper beats rock!";
+                score.innerHTML = "<b> You lose!</b> -- You chose rock but paper beats rock!<p> "
+                computerScore += 1;
+                roundCount +=1;
+                scores();
         }   if (computerSelection === "scissors") {
-                score.textContent = "You win! Rock beats scissors";
-        }   else {
-                score.textContent = "Error: Try again!"
+                score.innerHTML = "<b>You win!</b> -- Rock beats scissors!";
+                playerScore += 1;
+                roundCount +=1;
+                scores();
         }
     }   else if (playerSelection === "paper") {
             if (computerSelection === "scissors") {
-                score.textContent = "You lose! Scissors beats paper!";
+                score.innerHTML = "<b>You lose!</b> -- Scissors beats paper!";
+                computerScore += 1;
+                roundCount +=1;
+                scores();
         }   if (computerSelection === "rock") {
-                score.textContent = "You win! Paper beats rock!";
-        }   else {
-                score.textContent = "Error: Try again!"
+                score.innerHTML = "<b>You win!</b> -- Paper beats rock!";
+                playerScore += 1;
+                roundCount +=1;
+                scores();
         }
-
     }   else if (playerSelection === "scissors"){
             if (computerSelection === "paper") {
-                score.textContent = "You win! Scissors beats paper";
+                score.innerHTML = "<b>You win!</b> -- Scissors beats paper";
+                playerScore += 1;
+                roundCount +=1;
+                scores();
         }   if (computerSelection === "rock"){
-                score.textContent = "You lose! Rock beats scissors";
-        }   else {
-                score.textContent = "Error: Try again!"
-        }
+                score.innerHTML = "<b>You lose!</b> -- Rock beats scissors";
+                computerScore += 1;
+                roundCount +=1;
+                scores();
     }
+    end();
+}};
+
+function scores() {
+        current.textContent =` It is currently ${playerScore} to ${computerScore} out of ${roundCount}`;
+        if (playerScore === computerScore){
+                results.textContent = `You are currently tied.`;
+
+        }
+        if (playerScore > computerScore ){
+                results.textContent = `You are currently in the lead!`;
+
+        }
+        if (computerScore > playerScore) {
+                results.textContent = `The computer is in the lead!`;
+
+        }
+};
+
+
+function end() {
+        if (playerScore === 5) {
+                reset.textContent = "Good game! You won! Try again!"
+                playerScore === 0;
+                computerScore === 0;
+        }
+        if (computerScore === 5) {
+                reset.textContent ="Oh no! The computer won! Try again!"
+                playerScore === 0;
+                computerScore === 0;
+        }
 }
-
-console.log("You chose " + playerSelection);
-console.log("The computer chose " + computerSelection);
-console.log("You have won " + playerScore + " times.");
-console.log("The computer has won " + computerScore + " times.");
-console.log("This is round " + roundCount);
-

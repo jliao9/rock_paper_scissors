@@ -1,5 +1,8 @@
 .body {
    max-height: 100vh;
+   display: flex; 
+   justify-content: center;
+   align-items: center;
 }
 
 .header {
@@ -16,13 +19,44 @@
     font-family: monospace;
 }
 
-.fighters {
+.player {
     display: flex; 
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    gap: 100px;
+
 }
 
-.rock:hover, .paper:hover, .scissors:hover {
-    font-family: monospace;
+button:hover {
     font-size: 120%;
+}
+
+.scoreboard {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+}
+
+#result {
+    display: flex; 
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+
+}
+
+button {
+    height: 100px;
+    width: 100px;
+    font-family: monospace;
+}
+
+.current {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
 }
