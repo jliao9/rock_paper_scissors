@@ -5,6 +5,7 @@ let roundCount = 0;
 let computerSelection = computerPlay();
 let playerSelection;
 
+const buttons = document.querySelectorAll("button");
 const rockPlay = document.querySelector("#rock");
 const paperPlay = document.querySelector("#paper");
 const scissorsPlay = document.querySelector("#scissors");
@@ -44,17 +45,20 @@ function playRound(playerSelection) {
         score.innerHTML = "<b>It's a tie!</b>";
         roundCount +=1;
         scores();
+        end();
     }   else if (playerSelection === "rock") {
             if (computerSelection === "paper") {
                 score.innerHTML = "<b> You lose!</b> -- You chose rock but paper beats rock!<p> "
                 computerScore += 1;
                 roundCount +=1;
                 scores();
+                end();
         }   if (computerSelection === "scissors") {
                 score.innerHTML = "<b>You win!</b> -- Rock beats scissors!";
                 playerScore += 1;
                 roundCount +=1;
                 scores();
+                end();
         }
     }   else if (playerSelection === "paper") {
             if (computerSelection === "scissors") {
@@ -62,11 +66,13 @@ function playRound(playerSelection) {
                 computerScore += 1;
                 roundCount +=1;
                 scores();
+                end();
         }   if (computerSelection === "rock") {
                 score.innerHTML = "<b>You win!</b> -- Paper beats rock!";
                 playerScore += 1;
                 roundCount +=1;
                 scores();
+                end();
         }
     }   else if (playerSelection === "scissors"){
             if (computerSelection === "paper") {
@@ -74,13 +80,14 @@ function playRound(playerSelection) {
                 playerScore += 1;
                 roundCount +=1;
                 scores();
+                end();
         }   if (computerSelection === "rock"){
                 score.innerHTML = "<b>You lose!</b> -- Rock beats scissors";
                 computerScore += 1;
                 roundCount +=1;
                 scores();
+                end();
     }
-    end();
 }};
 
 function scores() {
@@ -102,13 +109,15 @@ function scores() {
 
 function end() {
         if (playerScore === 5) {
-                reset.textContent = "Good game! You won! Try again!"
-                playerScore === 0;
-                computerScore === 0;
+                reset.textContent = "Good game! You won! Restart to try again!"
+                buttons.forEach(button => {
+                        button.disabled = true;
+                });
         }
         if (computerScore === 5) {
-                reset.textContent ="Oh no! The computer won! Try again!"
-                playerScore === 0;
-                computerScore === 0;
+                reset.textContent ="Oh no! The computer won! Restart to try again!"
+                buttons.forEach(button => {
+                        button.disabled = true;
+                });
         }
 }
