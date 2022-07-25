@@ -20,7 +20,6 @@ function computerPlay(){
     
 }
 
-
 rockPlay.addEventListener("click", () => {
         playerSelection = "rock";
         playRound("rock", computerSelection);
@@ -42,19 +41,19 @@ function playRound(playerSelection) {
         let computerSelection = computerPlay();
 
     if (playerSelection === computerSelection) {
-        score.innerHTML = "<b>It's a tie!</b>";
+        score.textContent = `It's a tie!`;
         roundCount +=1;
         scores();
         end();
     }   else if (playerSelection === "rock") {
             if (computerSelection === "paper") {
-                score.innerHTML = "<b> You lose!</b> -- You chose rock but paper beats rock!<p> "
+                score.textContent =  `You lose this round!-- You chose ${playerSelection} but the computer chose ${computerSelection}...${computerSelection} beats ${playerSelection}!`
                 computerScore += 1;
                 roundCount +=1;
                 scores();
                 end();
         }   if (computerSelection === "scissors") {
-                score.innerHTML = "<b>You win!</b> -- Rock beats scissors!";
+                score.textContent =  `You win this round!-- You chose ${playerSelection} while the computer chose ${computerSelection}`
                 playerScore += 1;
                 roundCount +=1;
                 scores();
@@ -62,13 +61,13 @@ function playRound(playerSelection) {
         }
     }   else if (playerSelection === "paper") {
             if (computerSelection === "scissors") {
-                score.innerHTML = "<b>You lose!</b> -- Scissors beats paper!";
+                score.textContent =  `You lose this round!-- You chose ${playerSelection} but the computer chose ${computerSelection}`
                 computerScore += 1;
                 roundCount +=1;
                 scores();
                 end();
         }   if (computerSelection === "rock") {
-                score.innerHTML = "<b>You win!</b> -- Paper beats rock!";
+                score.textContent =  `You win this round!-- You chose ${playerSelection} while the computer chose ${computerSelection}`
                 playerScore += 1;
                 roundCount +=1;
                 scores();
@@ -76,13 +75,13 @@ function playRound(playerSelection) {
         }
     }   else if (playerSelection === "scissors"){
             if (computerSelection === "paper") {
-                score.innerHTML = "<b>You win!</b> -- Scissors beats paper";
+                score.textContent =  `You win this round!-- You chose ${playerSelection} while the computer chose ${computerSelection}`
                 playerScore += 1;
                 roundCount +=1;
                 scores();
                 end();
         }   if (computerSelection === "rock"){
-                score.innerHTML = "<b>You lose!</b> -- Rock beats scissors";
+                score.textContent =  `You lose this round!-- You chose ${playerSelection} but the computer chose ${computerSelection}`
                 computerScore += 1;
                 roundCount +=1;
                 scores();
